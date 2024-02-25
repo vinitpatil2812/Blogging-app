@@ -2,17 +2,13 @@
 <html lang="en">
 <head>
     <%- include('./partials/head') %>
-    <title>Signup</title>
+    <title>Signin</title>
 </head>
 <body>
     <%- include('./partials/nav') %>
 
     <div class="container mt-4">
-        <form action="/user/signup" method="post">
-            <div class="mb-3">
-              <label for="name" class="form-label">Name</label>
-              <input name= "name" type="text" class="form-control" id="name" aria-describedby="name">
-            </div>
+        <form action="/user/signin" method="post">
             <div class="mb-3">
               <label for="exampleInputEmail1" class="form-label">Email address</label>
               <input name= "email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
