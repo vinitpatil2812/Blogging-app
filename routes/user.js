@@ -1,5 +1,5 @@
 const { Router } = require("express");
-const User = require("../models/user");
+const { handleSignin, handleSignup } = require("../controllers/user");
 
 const router = Router();
 
@@ -11,32 +11,9 @@ router.get("/signup", (req, res) => {
     res.render("signup");
 });
 
-router.post("signin", async(req, res) => {
-    const { name, email, password } = req.body;
+router.post("signin", handleSignin);
 
-    try {
-        const token = await User.matchPasswordAndGenerateTOken(email, password);
-
-        return res.cookie("token", token).redirect("/");
-    }
-    catch (error) {
-        return res.render("signin", {
-            error,
-        });
-    }
-});
-
-router.post("signup", async (req, res) => {
-    const { name, email, password } = req.body;
-
-    await User.create({
-        name,
-        email,
-        password,
-    });
-
-    return res.redirect("/");
-});
+router.post("signup", handleSignup);
 
 router.get("/logout", (req, res) => {
     res.clearCookie("token").redirect("/");
