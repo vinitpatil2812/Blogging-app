@@ -17,6 +17,6 @@ const commentSchema = Schema({
     },
 }, { timestamps: true });
 
-const Comment = model("comment", blogSchema);
+const Comment = model("comment", commentSchema);
 
 module.exports = Comment;

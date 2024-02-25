@@ -4,7 +4,7 @@ const handleSignin = async(req, res) => {
     const { name, email, password } = req.body;
 
     try {
-        const token = await User.matchPasswordAndGenerateTOken(email, password);
+        const token = await User.matchPasswordAndGenerateToken(email, password);
 
         return res.cookie("token", token).redirect("/");
     }

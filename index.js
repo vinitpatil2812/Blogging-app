@@ -1,9 +1,11 @@
+require("dotenv").config()
+
 const express = require("express");
 const path = require("path");
 const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
 
-const { checkForAuthenticationCookie } = require("./middewares/authentication");
+const { checkForAuthenticationCookie } = require("./middlewares/authentication");
 
 const userRoute = require("./routes/user");
 const blogRoute = require("./routes/blog");
@@ -11,11 +13,11 @@ const blogRoute = require("./routes/blog");
 const Blog = require("./models/blog");
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
-// mongoose.connect().then((e) => {
-//     console.log("DataBase connected");
-// });
+mongoose.connect(process.env.MONGO_URL).then((e) => {
+    console.log("DataBase connected");
+});
 
 app.set('view engine', 'ejs');
 app.set("views", path.resolve("./views"));
