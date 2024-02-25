@@ -8,6 +8,8 @@ const { checkForAuthenticationCookie } = require("./middewares/authentication");
 const userRoute = require("./routes/user");
 const blogRoute = require("./routes/blog");
 
+const Blog = require("./models/blog");
+
 const app = express();
 const PORT = 3000;
 
@@ -18,15 +20,19 @@ const PORT = 3000;
 app.set('view engine', 'ejs');
 app.set("views", path.resolve("./views"));
 
-app.get("/", (req, res) => {
+app.get("/", async (req, res) => {
+    const allBlogs = await Blog.find({});
+
     res.render("home", {
         user: req.user,
+        blogs: allBlogs,
     });
 }); 
 
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(checkForAuthenticationCookie("token"));
+app.use(express.static(path.resolve("./public")));
 
 app.use("/user", userRoute);
 app.use("/blog", blogRoute);
