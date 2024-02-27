@@ -11,9 +11,9 @@ router.get("/signup", (req, res) => {
     res.render("signup");
 });
 
-router.post("signin", handleSignin);
+router.post("/signin", handleSignin);
 
-router.post("signup", handleSignup);
+router.post("/signup", handleSignup);
 
 router.get("/logout", (req, res) => {
     res.clearCookie("token").redirect("/");

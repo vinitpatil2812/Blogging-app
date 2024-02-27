@@ -35,8 +35,6 @@ const userSchema = new Schema({
     },
 }, { timestamps: true });
 
-const User = model("user", userSchema);
-
 userSchema.pre("save", function(next) {
     const user = this;
 
@@ -55,6 +53,7 @@ userSchema.pre("save", function(next) {
 });
 
 userSchema.static("matchPasswordAndGenerateToken", async function(email, password) {
+
     const user =  await this.findOne({ email });
 
     if(!user) throw new Error("User not found");
@@ -72,5 +71,7 @@ userSchema.static("matchPasswordAndGenerateToken", async function(email, passwor
 
     return token;
 });
+
+const User = model("user", userSchema);
 
 module.exports = User;
