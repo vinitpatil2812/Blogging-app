@@ -4,10 +4,10 @@ const Blog = require("../models/blog");
 const Comment = require("../models/comment");
 
 const handleGetBlog = async (req, res) => {
-    const blogs = await Blog.findById(req.params.id).populate("createdBy");
+    const blog = await Blog.findById(req.params.id).populate("createdBy");
     const comments = await Comment.find({ blogId: req.params.id }).populate("createdBy");
 
-    return res.render("blog", {
+    return res.render("./partials/blog", {
         user: req.user,
         blog,
         comments,

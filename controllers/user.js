@@ -5,7 +5,6 @@ const handleSignin = async(req, res) => {
 
     try {
         const token = await User.matchPasswordAndGenerateToken(email, password);
-        // const user = await User.findOne({ email });
 
         return res.cookie("token", token).redirect("/");
     }

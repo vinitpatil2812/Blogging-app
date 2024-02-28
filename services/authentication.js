@@ -4,8 +4,9 @@ const SECRET = "key";
 
 function createTokenForUser(user) {
     const payload = {
-        id: user._id,
-        email: user.email,
+        user,
+        // id: user._id,
+        // email: user.email,
     }
 
     const token = JWT.sign(payload, SECRET);
