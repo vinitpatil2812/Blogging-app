@@ -11,10 +11,10 @@ const commentSchema = Schema({
         ref: "blog",
     },
 
-    createdBy: {
+    createdBy: [{
         type: Schema.Types.ObjectId,
         ref: "user",
-    },
+    }],
 }, { timestamps: true });
 
 const Comment = model("comment", commentSchema);
