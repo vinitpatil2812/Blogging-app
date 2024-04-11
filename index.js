@@ -23,7 +23,6 @@ mongoose.connect(process.env.MONGO_URL).then((e) => {
 app.set('view engine', 'ejs');
 app.set("views", path.resolve("./views"));
 
-
 app.use(express.static(path.resolve("./public")));
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
